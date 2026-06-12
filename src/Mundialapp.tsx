@@ -11,9 +11,9 @@ import { GrupoI } from "./Grupos-Mundial/GrupoI";
 import { GrupoJ } from "./Grupos-Mundial/GrupoJ";
 
 export function MundialApp() {
-  const [vista, setVista] = useState<string>("inicio"); // 2. Indicamos que el estado es un string
+  const [vista, setVista] = useState<string>("inicio");
 
-  // 3. Definimos el objeto con tipos estrictos de TSX
+  
   const contenidoGrupos: Record<string, ReactElement> = {
     grupoA: <GrupoA />,
     grupoB: <GrupoB />,
@@ -44,7 +44,7 @@ export function MundialApp() {
         </div>
       ) : (
         <div>
-          {/* 4. Ahora TypeScript sabe exactamente qué es esto */}
+          {}
           {contenidoGrupos[vista]}
 
           <button onClick={() => setVista("inicio")}>Volver al inicio</button>
