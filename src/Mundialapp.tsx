@@ -1,55 +1,34 @@
-import { useState, type ReactElement } from "react"; // 1. Importamos ReactElement para los tipos
-import { GrupoA } from "./Grupos-Mundial/GrupoA";
-import { GrupoB } from "./Grupos-Mundial/GrupoB";
-import { GrupoC } from "./Grupos-Mundial/GrupoC";
-import { GrupoD } from "./Grupos-Mundial/GrupoD";
-import { GrupoE } from "./Grupos-Mundial/GrupoE";
-import { GrupoF } from "./Grupos-Mundial/GrupoF";
-import { GrupoG } from "./Grupos-Mundial/GrupoG";
-import { GrupoH } from "./Grupos-Mundial/GrupoH";
-import { GrupoI } from "./Grupos-Mundial/GrupoI";
-import { GrupoJ } from "./Grupos-Mundial/GrupoJ";
+/*import { Link } from "react-router-dom";*/
+import { Link, Outlet } from "react-router-dom";
 
 export function MundialApp() {
-  const [vista, setVista] = useState<string>("inicio");
+  const grupos = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
 
-  
-  const contenidoGrupos: Record<string, ReactElement> = {
-    grupoA: <GrupoA />,
-    grupoB: <GrupoB />,
-    grupoC: <GrupoC />,
-    grupoD: <GrupoD />,
-    grupoE: <GrupoE />,
-    grupoF: <GrupoF />,
-    grupoG: <GrupoG />,
-    grupoH: <GrupoH />,
-    grupoI: <GrupoI />,
-    grupoJ: <GrupoJ />,
-  };
+  /*return (
+    <div>
+      {grupos.map((grupo) => (
+        <Link to={`/grupo-detalle?grupo=${grupo}`}>
+          <button>Ver Grupo {grupo.toUpperCase()}</button>
+        </Link>
+      ))}
+    </div>
+  );
+}*/
 
   return (
     <div>
-      {vista === "inicio" ? (
-        <div>
-          <button onClick={() => setVista("grupoA")}>Ver Grupo A</button>
-          <button onClick={() => setVista("grupoB")}>Ver Grupo B</button>
-          <button onClick={() => setVista("grupoC")}>Ver Grupo C</button>
-          <button onClick={() => setVista("grupoD")}>Ver Grupo D</button>
-          <button onClick={() => setVista("grupoE")}>Ver Grupo E</button>
-          <button onClick={() => setVista("grupoF")}>Ver Grupo F</button>
-          <button onClick={() => setVista("grupoG")}>Ver Grupo G</button>
-          <button onClick={() => setVista("grupoH")}>Ver Grupo H</button>
-          <button onClick={() => setVista("grupoI")}>Ver Grupo I</button>
-          <button onClick={() => setVista("grupoJ")}>Ver Grupo J</button>
-        </div>
-      ) : (
-        <div>
-          {}
-          {contenidoGrupos[vista]}
+      <nav>
+        {grupos.map((grupo) => (
+          <Link key={grupo} to={`grupo-detalle?grupo=${grupo}`}>
+            <button>Ver Grupo {grupo.toUpperCase()}</button>
+          </Link>
+        ))}
+      </nav>
 
-          <button onClick={() => setVista("inicio")}>Volver al inicio</button>
-        </div>
-      )}
+      <hr />
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 }
